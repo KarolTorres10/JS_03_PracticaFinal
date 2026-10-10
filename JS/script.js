@@ -1,4 +1,5 @@
-/*Ejercicio 1*/
+/*Ejercicio 1
+
 let vida = 100;
 let LimSup = 50;
 let LimInf = 0;
@@ -19,14 +20,70 @@ let ciclo = setInterval(() => {
         console.log("Has muerto.");
     }
 },
-2000);
+2000);*/
+
 
 
 /*Ejercicio 2*/
 
+let Inventario = [
+    {
+        name: "Bloque de Tierra",
+        tipo: "Construccion",
+        cantidad: 64
+    },
+    {
+        name: "Espada de Diamante",
+        tipo: "Combate",
+        cantidad: 1
+    },
+    {
+        name: "Piedra",
+        tipo: "Construccion",
+        cantidad: 52
+    },
+    {
+        name: "Manzana Dorada",
+        tipo: "Alimentacion",
+        cantidad: 16
+    },
+    {
+        name: "Bloque de Madera de Abedul",
+        tipo: "Construccion",
+        cantidad: 48
+    },
+    {
+        name: "Flecha",
+        tipo: "Combate",
+        cantidad: 6
+    },
+    {
+        name: "Zanahoria",
+        tipo: "Alimentacion",
+        cantidad: 20
+    },
+];
+
+function OrdenInv(tipo) {
+    let tipo_Construccion = Inventario.filter((Type) => Type.tipo === "Construccion");
+    let OrdenCon = tipo_Construccion.toSorted((a, b) => b.cantidad - a.cantidad);
+    console.log("Tipo: Construccion", OrdenCon);
+
+    let tipo_Alimentacion = Inventario.filter((Type) => Type.tipo === "Alimentacion");
+    let OrdenAli = tipo_Alimentacion.toSorted((a, b) => b.cantidad - a.cantidad);
+    console.log("Tipo: Alimentacion", OrdenAli);
+
+    let tipo_Combate = Inventario.filter((Type) => Type.tipo === "Combate");
+    let OrdenCom = tipo_Combate.toSorted((a, b) => b.cantidad - a.cantidad);
+    console.log("Tipo: Combate", OrdenCom);
+}
+
+OrdenInv();
+
 
 
 /*Ejercicio 3
+
 const Greninja = [
     {
         nombre: "Greninja",
