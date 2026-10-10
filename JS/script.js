@@ -24,7 +24,7 @@ let ciclo = setInterval(() => {
 
 
 
-/*Ejercicio 2*/
+/*Ejercicio 2
 
 let Inventario = [
     {
@@ -78,45 +78,61 @@ function OrdenInv(tipo) {
     console.log("Tipo: Combate", OrdenCom);
 }
 
-OrdenInv();
+OrdenInv();*/
 
 
 
-/*Ejercicio 3
+/*Ejercicio 3*/
 
-const Greninja = [
-    {
-        nombre: "Greninja",
-        tipo: "Agua",
-        ataque: "Shuriken de agua",
-        dano: 95,
-        vida: 72,
-        defensa: 70
-    },
-];
+const Greninja = {
+    nombre: "Greninja",
+    tipo: "Agua",
+    ataque: "Shuriken de agua",
+    dano: 95,
+    vida: 72,
+    defensa: 70
+};
 
-const Lucario = [
-    {
-        nombre: "Lucario",
-        tipo: "Lucha",
-        ataque: "Esfera Aural",
-        dano: 110,
-        vida: 70,
-        defensa: 67
-    },
-];*/
+const Lucario = {
+    nombre: "Lucario",
+    tipo: "Lucha",
+    ataque: "Esfera Aural",
+    dano: 110,
+    vida: 70,
+    defensa: 67
+};
 
-/*
-function GreninjaAtaque(Greninja, Lucario) {
-    let Dano = Greninja.ataque - Lucario.defensa;
-    Lucario.vida = Lucario.vida - Dano;
 
-    return Lucario.vida;
+function Atacar(atacante, defensor) {
+    let Damage = Math.max(0, atacante.dano - defensor.defensa);
+    defensor.vida = Math.max(0, defensor.vida - Damage);
+
+    console.log(`${atacante.nombre} usa ${atacante.ataque} y hace ${Damage} de daño.`);
+    console.log(`${defensor.nombre} queda con ${defensor.vida} de vida.`);
+
+    return defensor.vida;
 }
-}*/
 
+function Combate(p1, p2) {
+    let turno = 1;
 
-function LucarioAtaque(Greninja, Lucario) {
-    let vidaRestante = Greninja.vida -= (Lucario.dano - Greninja.defensa);
-    console.log(`Lucario usa Esfera Aural. La vida restante de Greninja es: ${vidaRestante}`);
+    while (p1.vida > 0 && p2.vida > 0) {
+        console.log(`--- Turno ${turno} ---`);
+
+        Atacar(p1, p2);
+        if (p2.vida === 0) {
+            console.log(`${p2.nombre} se ha debilitado. ¡${p1.nombre} gana!`);
+            break;
+        }
+
+        Atacar(p2, p1);
+        if (p1.vida === 0) {
+            console.log(`${p1.nombre} se ha debilitado. ¡${p2.nombre} gana el combate!`);
+            break;
+        }
+
+        turno++;
+    }
 }
+
+Combate(Greninja, Lucario);
